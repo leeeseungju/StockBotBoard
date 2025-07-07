@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<th:block th:replace="~{fragments/header :: header}"/>
+    <div class="container">
+    <h2>마이페이지</h2>
+    <div th:if="${user.userType == 'admin'}" class="message" style="margin-bottom:14px; padding:6px 12px; font-size:0.97em;">
+        <p style="margin:0;"><b>현재 관리자 계정입니다.</b></p>
+    </div>
+
+    <form th:action="@{/mypage}" method="post" class="form-center" id="mypageForm">
+        <div class="form-row">
+            <label for="userId">아이디:</label>
+            <span id="userId" th:text="${user.userId}"></span>
+        </div>
+        <div class="form-row">
+            <label for="userName">이름:</label>
+            <input type="text" id="userName" name="userName" th:value="${user.userName}" required style="max-width:320px; padding-left:18px;" />
+        </div>
+        <div class="form-row">
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" placeholder="새 비밀번호 입력" required style="max-width:320px; padding-left:18px;" />
+        </div>
+        <div class="footer-links" style="display: flex; justify-content: space-between; align-items: center; width:100%; margin-top: 24px;">
+            <a th:href="@{/}" class="btn-main">메인화면</a>
+            <button type="submit" class="btn-main" form="mypageForm">정보 수정</button>
+        </div>
+    </form>
+
+    <div th:if="${message}" class="message">
+        <p th:text="${message}"></p>
+    </div>
+    </div>
+</body>
+</html>

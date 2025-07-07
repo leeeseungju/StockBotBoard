@@ -1,0 +1,75 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kopodb
+      MYSQL_USER: kopouser
+      MYSQL_PASSWORD: kopouser
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - my-net
+
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    tty: true
+    networks:
+      - my-net
+    command: serve
+
+  fastapi:
+    image: leeeseungju/stockbot:latest
+    build:
+      context: ./StockBot    
+    container_name: stockbot
+    volumes:
+      - ./StockBoard/src/main/resources/static/charts:/app/charts
+      - ./StockBoard/src/main/resources/static/img:/app/static/img
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./StockBot/.env
+    depends_on:
+      - mysql
+      - ollama
+    networks:
+      - my-net
+
+  stockboard:
+    image: leeeseungju/stockboard:latest
+    container_name: stockboard
+    volumes:
+      - ./StockBoard/src/main/resources/static/charts:/app/charts
+      - ./StockBoard/src/main/resources/static/img:/app/static/img
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - my-net
+
+volumes:
+  mysql-data:
+  ollama-data:
+
+networks:
+  my-net:
+    driver: bridge

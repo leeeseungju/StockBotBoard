@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>📊 주식 챗봇</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .banner-wrap {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        img.banner {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+        img.chart {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 상단 네비게이션 -->
+    <th:block th:replace="~{fragments/header :: header}" />
+
+    <!-- 배너 이미지 + 검색 입력창 -->
+    <div class="banner-wrap">
+        <img src="/img/banner.png" alt="배너 이미지" loading="lazy" class="banner" />
+        <div class="search-overlap">
+            <form id="chat-form" method="post" th:action="@{/stock}">
+                <input type="text" id="message" name="message" placeholder="예: 삼성전자 알려줘" required />
+                <button type="submit">요약 + 리포트 요청</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 오류 메시지 alert 처리 -->
+    <script th:if="${error}" th:inline="javascript">
+        alert([[${error}]]);
+    </script>
+
+    <!-- 결과 출력 -->
+    <div th:if="${stockName}" style="background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); max-width: 900px; margin: 40px auto;">
+        <h2>📌 요약 정보</h2>
+        <p><b>종목명:</b> [[${stockName}]]</p>
+        <p><b>종목코드:</b> [[${stockSymbol}]]</p>
+        <p><b>현재가:</b> [[${price}]]</p>
+        <p><b>AI 조언:</b> [[${summary}]]</p>
+
+        <div th:if="${summaryChart}">
+            <b>📈 주가 추이 차트</b><br/>
+            <img th:src="@{'/charts/' + ${summaryChart}}" alt="차트 이미지" class="chart">
+            <p>차트 파일명: [[${summaryChart}]]</p>
+        </div>
+
+        <h2 style="margin-top:40px;">📑 상세 리포트</h2>
+        <div th:utext="${report}" style="white-space:pre-wrap;"></div>
+
+        <div th:if="${techChart}" style="margin-top: 40px;">
+            <b>📊 기술 분석 차트</b><br/>
+            <img th:src="@{'/charts/' + ${techChart}}" alt="차트 이미지" class="chart">
+            <p>차트 파일명: [[${techChart}]]</p>
+        </div>
+    </div>
+</body>
+</html>

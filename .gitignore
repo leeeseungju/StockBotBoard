@@ -1,0 +1,35 @@
+# 환경 변수
+*.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# IDE 설정
+.idea/
+.vscode/
+*.iml
+
+# Spring
+StockBoard/target/
+
+# 출력물 및 대용량 생성 파일
+charts/
+*.zip
+*.tar
+*.gz
+*.log
+
+# 모델 또는 바이너리
+*.pt
+*.ckpt
+*.onnx
+*.h5
+
+# macOS
+.DS_Store
+
+# 시스템 파일
+Thumbs.db
+ehthumbs.db

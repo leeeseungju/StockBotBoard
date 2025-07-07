@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>검색 로그</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<th:block th:replace="~{fragments/header :: header}"/>
+    <div class="container">
+    <h2>검색 로그</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>아이디</th>
+                <th>검색어</th>
+                <th>검색 시간</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="log, stat : ${logs}">
+                <td th:text="${logs.size() - stat.index}">1</td>
+                <td th:text="${log.userId}">user123</td>
+                <td th:text="${log.message}">삼성전자 어때?</td>
+                <td th:text="${log.searchedAt}">2025-07-01 12:34</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+    <a th:href="@{/}" class="btn-main">메인화면</a>
+    </div>
+</body>
+</html>

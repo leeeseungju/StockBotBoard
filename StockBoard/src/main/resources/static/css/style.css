@@ -1,0 +1,288 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6fa;
+    color: #222;
+}
+
+
+/* NAVIGATION */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.07);
+    padding: 12px 8px;
+    border: none;
+    margin: 0 !important; /* ✅ 여백 제거 */
+}
+
+nav a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 7px 18px;
+    border-radius: 6px;
+    font-size: 1.08em;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    max-width: 100%;
+    flex-shrink: 1;
+}
+
+nav a:hover, nav a.active {
+    background: #e3f0fd;
+    color: #125ea7;
+}
+
+
+/* BANNER */
+.banner-wrap {
+    position: relative;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0 !important;
+}
+
+img.banner {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* SEARCH OVERLAP */
+.search-overlap {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%) translateY(50%);
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+#chat-form {
+    display: flex;
+    align-items: stretch;
+    max-width: 520px;
+    width: 90vw;
+    border-radius: 30px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+}
+
+#chat-form input[type="text"] {
+    all: unset;
+    flex: 1;
+    height: 44px;
+    padding: 0 18px;
+    font-size: 1.05rem;
+    border-radius: 30px 0 0 30px;
+    background: #fff;
+    outline: none;
+}
+
+#chat-form button {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    min-width: 140px;
+    padding: 0 28px;
+    font-size: 1.05rem;
+    border-radius: 0 30px 30px 0;
+    background: #1976d2;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+}
+
+#chat-form button:hover {
+    background: #125ea7;
+}
+
+
+/* OPTIONAL: ETC */
+button, input[type="submit"] {
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+
+textarea {
+    width: 400px;
+    max-width: 98vw;
+    min-width: 120px;
+    padding: 24px 18px 24px 60px;
+    min-height: 44px;
+}
+
+.btn-small {
+    padding: 4px 12px !important;
+    font-size: 0.93em !important;
+    margin: 0.5px 0;
+    vertical-align: middle;
+}
+
+
+
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 32px 28px;
+}
+
+h1, h2, h3 {
+    color: #2d3a4b;
+    margin-bottom: 18px;
+}
+
+.form-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 12px;
+    width: auto;
+}
+.form-row label {
+    min-width: 110px;
+    width: 110px;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    vertical-align: middle;
+}
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row span {
+    width: 320px;
+    max-width: 90vw;
+    margin: 0;
+    padding: 0 0 0 0;
+    text-align: left;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="email"]::placeholder, textarea::placeholder {
+    color: #b0b8c1;
+    opacity: 1;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+    border: 1.5px solid #1976d2;
+    box-shadow: 0 4px 16px rgba(25,118,210,0.13);
+    outline: none;
+    background: #fff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    width: 100%;
+    height: 44px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1.5px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-size: 1.05rem;
+    padding: 0 18px;
+    color: #222;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border: 1.5px solid #1976d2;
+    box-shadow: 0 4px 16px rgba(25,118,210,0.13);
+    outline: none;
+    background: #fff;
+}
+
+button,
+input[type="submit"] {
+    height: 44px;
+    border-radius: 10px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    padding: 0 28px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    white-space: nowrap;
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: #125ea7;
+}
+
+button.btn-main,
+a.btn-main {
+    display: inline-block;
+    text-align: center;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 28px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 10px;
+    background: #1976d2;
+    color: #fff !important;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+button.btn-main:hover,
+a.btn-main:hover {
+    background: #125ea7;
+    color: #fff !important;
+}
+
+/* 메인화면 검색창 버튼 둥글게 유지 */
+#chat-form button {
+    border-radius: 0 30px 30px 0 !important;
+}

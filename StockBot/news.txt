@@ -1,0 +1,12 @@
+Title: 삼성전자(005930) 주가 및 뉴스 - Google Finance
+Description: 최근 삼성전자(005930)의 실시간 시세, 이전 실적, 차트를 비롯한 금융 정보를 확인하여 충분한 정보를 바탕으로 주식 거래와 투자를 결정하세요.
+Link: https://www.google.com/finance/quote/005930:KRX?hl=ko
+
+Title: 삼성전자(SSU) 주가 및 뉴스 - Google Finance
+Description: 대한민국 경기도 수원시에 본사가 있습니다. 전일 종가. 전일 마감 종가입니다. €932.00. 일일 변동폭. 전일 최고가와 최저가 사이의 범위입니다. €930.00 ...
+Link: https://www.google.com/finance/quote/SSU:VIE?hl=ko
+
+Title: Samsung Electronics Co Ltd (005930) Stock Price & News - Google ...
+Description: Samsung Electronics Co., Ltd. is a South Korean multinational major appliance and consumer electronics corporation founded on 13 January 1969
+Link: https://www.google.com/finance/quote/005930:KRX
+

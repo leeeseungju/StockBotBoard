@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.stockboard.mapper.UserMapper">
+
+    <!-- 명시적 매핑 설정 -->
+    <resultMap id="userResultMap" type="com.example.stockboard.domain.User">
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userType" column="user_type"/>
+        <result property="password" column="password"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <insert id="insertUser">
+        INSERT INTO user (user_id, password, user_name, user_type, created_at)
+        VALUES (#{userId}, #{password}, #{userName}, 'user', NOW())
+    </insert>
+
+    <!-- ✅ resultMap으로 수정 -->
+    <select id="findByUserId" resultMap="userResultMap">
+        SELECT * FROM user WHERE user_id = #{userId}
+    </select>
+
+    <select id="getAllUsers" resultMap="userResultMap">
+        SELECT * FROM user
+    </select>
+
+    <update id="updateUser" parameterType="com.example.stockboard.domain.User">
+        UPDATE user
+        SET password = #{password}, user_name = #{userName}
+        WHERE user_id = #{userId}
+    </update>
+</mapper>

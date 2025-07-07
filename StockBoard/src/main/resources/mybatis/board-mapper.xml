@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.stockboard.mapper.BoardMapper">
+
+    <!-- 게시글 목록 조회 -->
+    <select id="getBoardList" resultType="com.example.stockboard.domain.Board">
+        SELECT * FROM board ORDER BY idx DESC
+    </select>
+
+    <!-- 게시글 상세 조회 -->
+    <select id="getBoardById" parameterType="int" resultType="com.example.stockboard.domain.Board">
+        SELECT * FROM board WHERE idx = #{idx}
+    </select>
+
+    <!-- 게시글 등록 (count는 0, created_at은 NOW()) -->
+    <insert id="insertBoard" parameterType="com.example.stockboard.domain.Board">
+        INSERT INTO board (title, content, writer, count, created_at)
+        VALUES (#{title}, #{content}, #{writer}, 0, NOW())
+    </insert>
+
+    <!-- 게시글 수정 -->
+    <update id="updateBoard" parameterType="com.example.stockboard.domain.Board">
+        UPDATE board
+        SET title = #{title}, content = #{content}
+        WHERE idx = #{idx}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteBoard" parameterType="int">
+        DELETE FROM board WHERE idx = #{idx}
+    </delete>
+    
+    <update id="incrementCount" parameterType="int">
+	    UPDATE board SET count = count + 1 WHERE idx = #{idx}
+	</update>
+	
+	<!-- 페이징된 게시글 목록 -->
+	<select id="getBoardListWithPaging" resultType="com.example.stockboard.domain.Board">
+	    SELECT * FROM board
+	    ORDER BY idx DESC
+	    LIMIT #{size} OFFSET #{offset}
+	</select>
+	
+	<!-- 전체 게시글 수 -->
+	<select id="getTotalCount" resultType="int">
+	    SELECT COUNT(*) FROM board
+	</select>
+
+</mapper>

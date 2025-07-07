@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>회원 목록</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+	<th:block th:replace="~{fragments/header :: header}"/>
+	<div class="container">
+	<h2>회원 목록</h2>
+	<table>
+	    <thead>
+	        <tr>
+	            <th>번호</th>
+	            <th>ID</th>
+	            <th>이름</th>
+	            <th>권한</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="user, stat : ${users}">
+	            <td th:text="${stat.count}">1</td>
+	            <td th:text="${user.userId}">아이디</td>
+	            <td th:text="${user.userName}">이름</td>
+	            <td th:text="${user.userType}">권한</td>
+	        </tr>
+	    </tbody>
+	</table>
+	<br/>
+	<a th:href="@{/}" class="btn-main">메인화면</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>게시판</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+	<th:block th:replace="~{fragments/header :: header}"/>
+    <div class="container">
+    <h2>게시판</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+                <th>관리</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board, stat : ${boards}">
+                <td th:text="${totalCount - ((currentPage - 1) * 5 + stat.index)}">번호</td>
+                <td>
+                    <a th:href="@{'/board/view/' + ${board.idx}}" th:text="${board.title}"></a>
+                </td>
+                <td th:text="${board.writer}"></td>
+                <td th:text="${board.createdAt}"></td>
+                <td th:text="${board.count}"></td>
+                <td>
+                    <th:block th:if="${session.user != null and session.user.userName == board.writer}">
+                        <form th:action="@{'/board/edit/' + ${board.idx}}" method="get" style="display:inline;">
+                            <button type="submit" class="btn-main btn-small">수정</button>
+                        </form>
+                        <form th:action="@{'/board/delete/' + ${board.idx}}" method="post" style="display:inline;" 
+                              onsubmit="return confirm('정말 삭제하시겠습니까?');">
+                            <button type="submit" class="btn-main btn-small">삭제</button>
+                        </form>
+                    </th:block>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- ✅ 페이징 영역 -->
+    <div class="pagination" style="margin-top: 20px; text-align: center;">
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{'/board'(page=${i})}"
+               th:text="${i}"
+               th:classappend="${i == currentPage} ? 'active' : ''"
+               style="margin: 0 5px; text-decoration: none;">1</a>
+        </span>
+    </div>
+    <div class="footer-links" style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px;">
+        <a th:href="@{/}" class="btn-main">메인화면</a>
+        <button class="btn-main" onclick="location.href='/board/write'">글쓰기</button>
+    </div>
+    </div>
+</body>
+</html>

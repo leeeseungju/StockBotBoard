@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.stockboard.mapper.SearchLogMapper">
+
+    <insert id="insertSearchLog">
+        INSERT INTO search_log (user_id, message)
+        VALUES (#{userId}, #{message})
+    </insert>
+
+    <select id="getAllLogs" resultType="com.example.stockboard.domain.SearchLog">
+        SELECT * FROM search_log ORDER BY searched_at DESC
+    </select>
+
+</mapper>
