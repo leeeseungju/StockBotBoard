@@ -7,7 +7,7 @@ from config import ALPHA_VANTAGE_API_KEY, GOOGLE_API_KEY, SEARCH_ENGINE_ID
 from langchain_community.llms import Ollama
 
 # 종목 코드 CSV 경로
-STOCK_CODE_PATH = os.path.join(os.path.dirname(__file__), "stock_codes.csv")
+STOCK_CODE_PATH = "/app/data/stock_codes.csv"
 
 # 종목코드 자동 저장 함수
 def append_to_stock_codes(name, code):

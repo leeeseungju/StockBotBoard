@@ -1,27 +1,39 @@
 # 환경 변수
 *.env
+.env.*
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
 .venv/
+venv/
+pip-log.txt
 
 # IDE 설정
 .idea/
 .vscode/
 *.iml
 
-# Spring
+# Spring Boot
 StockBoard/target/
+*.class
 
-# 출력물 및 대용량 생성 파일
+# FastAPI 실행 관련
+*.pid
+*.db
+instance/
+*.sqlite3
+
+# Docker 관련
 charts/
-*.zip
 *.tar
 *.gz
-*.log
+*.zip
+*.sock
+*.pid
 
-# 모델 또는 바이너리
+# 모델 / 출력
 *.pt
 *.ckpt
 *.onnx
@@ -30,6 +42,10 @@ charts/
 # macOS
 .DS_Store
 
-# 시스템 파일
+# Windows
 Thumbs.db
 ehthumbs.db
+
+# 테스트 및 커버리지
+coverage/
+htmlcov/

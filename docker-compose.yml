@@ -40,6 +40,7 @@ services:
     volumes:
       - ./StockBoard/src/main/resources/static/charts:/app/charts
       - ./StockBoard/src/main/resources/static/img:/app/static/img
+      - ./StockBot/data:/app/data
     ports:
       - "8000:8000"
     env_file:
